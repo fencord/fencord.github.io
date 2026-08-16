@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fencord</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #111;
+      color: #ccc;
+      font-family: monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    a { color: #aaa; }
+    a:hover { color: #fff; }
+
+    hr { border: none; border-top: 1px solid #333; margin: 2rem 0; }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #333;
+    }
+    header span { color: #fff; font-weight: bold; }
+    nav a { margin-left: 1.5rem; font-size: 0.85rem; }
+
+    .hero { margin-bottom: 3rem; }
+    .hero h1 { font-size: 2.2rem; color: #fff; margin-bottom: 0.5rem; }
+    .hero p { color: #888; margin-bottom: 1.5rem; max-width: 480px; }
+    .hero-links a {
+      display: inline-block;
+      border: 1px solid #444;
+      padding: 0.4rem 1rem;
+      margin-right: 0.5rem;
+      font-size: 0.85rem;
+      color: #ccc;
+    }
+    .hero-links a:hover { border-color: #888; color: #fff; text-decoration: none; }
+
+    section { margin-bottom: 3rem; }
+    section h2 { color: #fff; margin-bottom: 1rem; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.1em; }
+
+    .screenshots {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+    }
+    .screenshots img {
+      width: 100%;
+      display: block;
+      background: #1a1a1a;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+
+    .browser-tabs { margin-bottom: 1rem; }
+    .tab-btn {
+      font-family: monospace;
+      font-size: 0.8rem;
+      background: transparent;
+      color: #666;
+      border: 1px solid #333;
+      padding: 0.3rem 0.8rem;
+      margin-right: 0.3rem;
+      margin-bottom: 0.3rem;
+      cursor: pointer;
+    }
+    .tab-btn:hover { color: #ccc; border-color: #555; }
+    .tab-btn.active { color: #fff; border-color: #888; }
+
+    .steps .step { padding: 0.75rem 0; border-bottom: 1px solid #222; display: flex; gap: 1rem; }
+    .steps .step:last-child { border-bottom: none; }
+    .step-n { color: #555; min-width: 1.5rem; }
+    .step-body p { color: #888; font-size: 0.85rem; margin-top: 0.2rem; }
+
+    .no-support { color: #666; padding: 1rem 0; font-size: 0.85rem; }
+    .no-support b { color: #ccc; }
+
+    code { background: #1a1a1a; border: 1px solid #333; padding: 0 0.3rem; font-family: monospace; }
+
+    footer { color: #555; font-size: 0.8rem; margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #222; display: flex; justify-content: space-between; }
+  </style>
+</head>
+<body>
+
+<header>
+  <span>fencord</span>
+  <nav>
+    <a href="#screenshots">screenshots</a>
+    <a href="#install">install</a>
+    <a href="#community">community</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <h1>Fencord</h1>
+  <p>Client mod for Fenrid. Plugins, themes, QOL stuff. Like Vencord but for Fenrid.</p>
+  <div class="hero-links">
+    <a href="#install">install</a>
+    <a href="https://github.com/fencord/fencord" target="_blank">github</a>
+  </div>
+</div>
+
+<hr />
+
+<section id="screenshots">
+  <h2>Screenshots</h2>
+  <div class="screenshots">
+    <img src="https://raw.githubusercontent.com/fencord/fencord-site/main/showcase1.png" alt="screenshot 1" loading="lazy" />
+    <img src="https://raw.githubusercontent.com/fencord/fencord-site/main/showcase2.png" alt="screenshot 2" loading="lazy" />
+    <img src="https://raw.githubusercontent.com/fencord/fencord-site/main/showcase3.png" alt="screenshot 3" loading="lazy" />
+    <img src="https://raw.githubusercontent.com/fencord/fencord-site/main/showcase4.png" alt="screenshot 4" loading="lazy" />
+  </div>
+</section>
+
+<hr />
+
+<section id="install">
+  <h2>Install</h2>
+  <div class="browser-tabs">
+    <button class="tab-btn active" onclick="switchTab('chrome',this)">Chrome</button>
+    <button class="tab-btn" onclick="switchTab('firefox',this)">Firefox</button>
+    <button class="tab-btn" onclick="switchTab('zen',this)">Zen</button>
+    <button class="tab-btn" onclick="switchTab('edge',this)">Edge</button>
+    <button class="tab-btn" onclick="switchTab('floorp',this)">Floorp</button>
+    <button class="tab-btn" onclick="switchTab('safari',this)">Safari (iOS)</button>
+  </div>
+
+  <div class="steps tab-content" id="tab-chrome">
+    <div class="step"><span class="step-n">1.</span><div class="step-body"><b>Install Violentmonkey</b><p>Get it from the <a href="https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegedbjdfpjejlbebgkdki" target="_blank">Chrome Web Store</a>.</p></div></div>
+    <div class="step"><span class="step-n">2.</span><div class="step-body"><b>Add the script</b><p>Open Violentmonkey → click <code>+</code> → paste <a href="https://github.com/fencord/fencord/blob/main/fencord.user.js" target="_blank">fencord.user.js</a> → save.</p></div></div>
+    <div class="step"><span class="step-n">3.</span><div class="step-body"><b>Open Fenrid</b><p>Go to <a href="https://fenrid.com" target="_blank">fenrid.com</a> and open the Fencord panel.</p></div></div>
+  </div>
+
+  <div class="steps tab-content" id="tab-firefox" style="display:none">
+    <div class="step"><span class="step-n">1.</span><div class="step-body"><b>Install Violentmonkey</b><p>Get it from <a href="https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/" target="_blank">Firefox Add-ons</a>.</p></div></div>
+    <div class="step"><span class="step-n">2.</span><div class="step-body"><b>Add the script</b><p>Open Violentmonkey → click <code>+</code> → paste <a href="https://github.com/fencord/fencord/blob/main/fencord.user.js" target="_blank">fencord.user.js</a> → save.</p></div></div>
+    <div class="step"><span class="step-n">3.</span><div class="step-body"><b>Open Fenrid</b><p>Go to <a href="https://fenrid.com" target="_blank">fenrid.com</a> and open the Fencord panel.</p></div></div>
+  </div>
+
+  <div class="steps tab-content" id="tab-zen" style="display:none">
+    <div class="step"><span class="step-n">1.</span><div class="step-body"><b>Install Violentmonkey</b><p>Zen is Firefox-based. Get it from <a href="https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/" target="_blank">Firefox Add-ons</a>.</p></div></div>
+    <div class="step"><span class="step-n">2.</span><div class="step-body"><b>Add the script</b><p>Open Violentmonkey → click <code>+</code> → paste <a href="https://github.com/fencord/fencord/blob/main/fencord.user.js" target="_blank">fencord.user.js</a> → save.</p></div></div>
+    <div class="step"><span class="step-n">3.</span><div class="step-body"><b>Open Fenrid</b><p>Go to <a href="https://fenrid.com" target="_blank">fenrid.com</a> and open the Fencord panel.</p></div></div>
+  </div>
+
+  <div class="steps tab-content" id="tab-edge" style="display:none">
+    <div class="step"><span class="step-n">1.</span><div class="step-body"><b>Install Violentmonkey</b><p>Get it from the <a href="https://microsoftedge.microsoft.com/addons/detail/violentmonkey/eeagobfjdenkkddmbclomhiblgggliao" target="_blank">Edge Add-ons store</a>.</p></div></div>
+    <div class="step"><span class="step-n">2.</span><div class="step-body"><b>Add the script</b><p>Open Violentmonkey → click <code>+</code> → paste <a href="https://github.com/fencord/fencord/blob/main/fencord.user.js" target="_blank">fencord.user.js</a> → save.</p></div></div>
+    <div class="step"><span class="step-n">3.</span><div class="step-body"><b>Open Fenrid</b><p>Go to <a href="https://fenrid.com" target="_blank">fenrid.com</a> and open the Fencord panel.</p></div></div>
+  </div>
+
+  <div class="steps tab-content" id="tab-floorp" style="display:none">
+    <div class="step"><span class="step-n">1.</span><div class="step-body"><b>Install Violentmonkey</b><p>Floorp is Firefox-based. Get it from <a href="https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/" target="_blank">Firefox Add-ons</a>.</p></div></div>
+    <div class="step"><span class="step-n">2.</span><div class="step-body"><b>Add the script</b><p>Open Violentmonkey → click <code>+</code> → paste <a href="https://github.com/fencord/fencord/blob/main/fencord.user.js" target="_blank">fencord.user.js</a> → save.</p></div></div>
+    <div class="step"><span class="step-n">3.</span><div class="step-body"><b>Open Fenrid</b><p>Go to <a href="https://fenrid.com" target="_blank">fenrid.com</a> and open the Fencord panel.</p></div></div>
+  </div>
+
+  <div class="no-support tab-content" id="tab-safari" style="display:none">
+    <b>Does not work.</b> Safari on iOS doesn't support userscript managers. Use a real browser.
+  </div>
+
+  <script>
+    function switchTab(id, btn) {
+      document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById('tab-' + id).style.display = 'block';
+      btn.classList.add('active');
+    }
+  </script>
+</section>
+
+<hr />
+
+<section id="community">
+  <h2>Community</h2>
+  <p>Join the Fenrid server: <a href="https://fenrid.com/bV0UT80d" target="_blank">fenrid.com/bV0UT80d</a></p>
+</section>
+
+<footer>
+  <span>fencord</span>
+  <a href="https://github.com/fencord/fencord" target="_blank">github</a>
+</footer>
+
+</body>
+</html>
